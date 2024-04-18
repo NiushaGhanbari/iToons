@@ -1,0 +1,12 @@
+@import "../../../assets/variables.scss";
+.album-list {
+  margin-top: 7rem;
+  app-album-card {
+    flex: 14%;
+    max-width: 10rem;
+    @media only screen and (max-width: 700px) {
+      flex: 1;
+      min-width: 100%;
+    }
+  }
+}
