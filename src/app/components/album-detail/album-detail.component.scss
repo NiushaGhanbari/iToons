@@ -1,0 +1,17 @@
+@import "../../../assets/variables.scss";
+
+img {
+  border-radius: $border-l-radius;
+  max-width: 30rem;
+}
+.back-button {
+  width: 40px;
+  height: 40px;
+}
+
+.track {
+  background-color: $light-grey;
+  padding: 8px;
+  border-radius: $border-radius;
+  margin-bottom: 4px;
+}
