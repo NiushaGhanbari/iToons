@@ -1,1 +1,48 @@
-/* You can add global styles to this file, and also import other style files */
+@use "@angular/material" as mat;
+@include mat.core();
+
+$iToons-primary: mat.define-palette(mat.$indigo-palette);
+$iToons-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$iToons-warn: mat.define-palette(mat.$red-palette);
+$iToons-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $iToons-primary,
+      accent: $iToons-accent,
+      warn: $iToons-warn,
+    ),
+    typography: mat.define-typography-config(),
+    density: 0,
+  )
+);
+@include mat.all-component-themes($iToons-theme);
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-mdc-text-field-wrapper {
+  background-color: #f3f5f6;
+  border-radius: 30px !important;
+}
+.mdc-notched-outline__trailing,
+.mdc-notched-outline__leading {
+  border: none !important;
+}
+@media only screen and (max-width: 700px) {
+  .mat-mdc-form-field-infix {
+    min-height: 46px !important;
+    padding: 10px !important;
+  }
+  mat-form-field mat-icon.mat-icon.notranslate.material-icons {
+    padding: 0 !important;
+    padding-left: 12px !important;
+  }
+}

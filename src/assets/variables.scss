@@ -1,0 +1,99 @@
+$body-xs-font_size: 0.9rem;
+
+$border-radius: 0.4rem;
+$border-m-radius: 0.8rem;
+$border-l-radius: 1.2rem;
+$border-xl-radius: 2.2rem;
+$border-xxl-radius: 3.6rem;
+
+$light-grey: #00000029;
+
+$sizes: (0, 1, 2, 3, 4, 6, 8, 12, 16, 24, 36);
+
+@each $size in $sizes {
+  //margin
+
+  .m-#{$size} {
+    margin: #{$size}rem;
+  }
+
+  .m-t-#{$size} {
+    margin-top: #{$size}rem;
+  }
+
+  .m-b-#{$size} {
+    margin-bottom: #{$size}rem;
+  }
+
+  .m-r-#{$size} {
+    margin-right: #{$size}rem;
+  }
+
+  .m-l-#{$size} {
+    margin-left: #{$size}rem;
+  }
+
+  //padding
+
+  .p-#{$size} {
+    padding: #{$size}rem;
+  }
+
+  .p-t-#{$size} {
+    padding-top: #{$size}rem;
+  }
+
+  .p-b-#{$size} {
+    padding-bottom: #{$size}rem;
+  }
+
+  .p-r-#{$size} {
+    padding-right: #{$size}rem;
+  }
+
+  .p-l-#{$size} {
+    padding-left: #{$size}rem;
+  }
+}
+
+.m-auto {
+  margin: auto;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.jus-center {
+  justify-content: center;
+}
+
+.jus-between {
+  justify-content: space-between;
+}
+
+.al-center {
+  align-items: center;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.container {
+  width: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  @media only screen and (min-width: 700px) {
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
+}
