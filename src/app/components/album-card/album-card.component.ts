@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Album } from '../../core/models/album.types';
 import { CommonModule } from '@angular/common';
-import { ResizeImagePipe } from '../../core/resize-image.pipe';
+import { ResizeImagePipe } from '../../helpers/resize-image.pipe';
 
 @Component({
   selector: 'app-album-card',
