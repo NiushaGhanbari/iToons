@@ -21,10 +21,7 @@
   </ng-container>
   <ng-template #collection>
     <div class="d-flex flex-col al-center m-b-2">
-      <img
-        [src]="album.artworkUrl100.replace('/100x100bb.jpg', '/270x270bb.jpg')"
-        alt="AlbumPhoto"
-      />
+      <img [src]="album.artworkUrl100 | resizeImage" alt="AlbumPhoto" />
       <h1 class="m-t-1">{{ album.collectionName }}</h1>
       <p>{{ album.artistName }}</p>
     </div>

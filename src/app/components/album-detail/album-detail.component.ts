@@ -6,11 +6,18 @@ import { Observable } from 'rxjs';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { ResizeImagePipe } from '../../core/resize-image.pipe';
 
 @Component({
   selector: 'app-album-detail',
   standalone: true,
-  imports: [AsyncPipe, CommonModule, MatIconModule, MatButtonModule],
+  imports: [
+    AsyncPipe,
+    CommonModule,
+    MatIconModule,
+    MatButtonModule,
+    ResizeImagePipe,
+  ],
   templateUrl: './album-detail.component.html',
   styleUrl: './album-detail.component.scss',
 })

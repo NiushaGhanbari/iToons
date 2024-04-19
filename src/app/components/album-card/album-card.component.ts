@@ -2,11 +2,12 @@ import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Album } from '../../core/models/album.types';
 import { CommonModule } from '@angular/common';
+import { ResizeImagePipe } from '../../core/resize-image.pipe';
 
 @Component({
   selector: 'app-album-card',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ResizeImagePipe],
   templateUrl: './album-card.component.html',
   styleUrl: './album-card.component.scss',
 })

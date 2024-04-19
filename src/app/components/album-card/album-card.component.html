@@ -2,7 +2,7 @@
   class="album-item cursor-pointer"
   (click)="navigateToAlbumDetail(album.collectionId)"
 >
-  <img [src]="album.artworkUrl100" alt="AlbumPhoto" />
+  <img [src]="album.artworkUrl100 | resizeImage" alt="AlbumPhoto" />
   <div class="detail">
     <p>{{ album.collectionName }}</p>
     <p>{{ album.releaseDate | date : "yyyy" }}</p>
