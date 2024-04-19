@@ -5,9 +5,6 @@
   <img [src]="album.artworkUrl100" alt="AlbumPhoto" />
   <div class="detail">
     <p>{{ album.collectionName }}</p>
-    <div class="d-flex jus-between">
-      <p>{{ album.releaseDate | date : "yyyy" }}</p>
-      <p>{{ album.collectionPrice | currency : album.currency }}</p>
-    </div>
+    <p>{{ album.releaseDate | date : "yyyy" }}</p>
   </div>
 </div>
