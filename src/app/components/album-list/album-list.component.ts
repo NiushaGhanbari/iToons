@@ -1,5 +1,5 @@
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
-import { ApiAlbumService } from '../../core/services/album.service';
+import { MusicApiService } from '../../core/services/music-api.service';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { Observable, finalize, map } from 'rxjs';
 import { Album } from '../../core/models/album.types';
@@ -28,7 +28,7 @@ export class AlbumListComponent {
   public displayNumber: number = 15;
   public popularAlbums$!: Observable<Album[]>;
   constructor(
-    private apiAlbumService: ApiAlbumService,
+    private musicApiService: MusicApiService,
     private route: ActivatedRoute
   ) {}
 
@@ -69,12 +69,12 @@ export class AlbumListComponent {
 
   loadAlbums(artistName: string) {
     this.isLoading = true;
-    this.albums$ = this.apiAlbumService
+    this.albums$ = this.musicApiService
       .getAlbums(artistName)
       .pipe(finalize(() => (this.isLoading = false)));
   }
   getPopularArtists() {
-    this.popularAlbums$ = this.apiAlbumService.getPopularArtists();
+    this.popularAlbums$ = this.musicApiService.getArtistAlbums();
   }
 
   @HostListener('window:scroll', ['$event'])

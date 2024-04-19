@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ApiAlbumService } from '../../core/services/album.service';
+import { MusicApiService } from '../../core/services/music-api.service';
 import { ActivatedRoute } from '@angular/router';
 import { MusicTrack } from '../../core/models/music-track.types';
 import { Observable } from 'rxjs';
@@ -24,7 +24,7 @@ import { ResizeImagePipe } from '../../core/resize-image.pipe';
 export class AlbumDetailComponent {
   public albumDetail$!: Observable<MusicTrack[]>;
   constructor(
-    private apiAlbumService: ApiAlbumService,
+    private musicApiService: MusicApiService,
     private route: ActivatedRoute
   ) {
     this.route?.paramMap.subscribe((params) => {
@@ -34,7 +34,7 @@ export class AlbumDetailComponent {
   }
 
   getAlbumTracks(collectionId: string) {
-    this.albumDetail$ = this.apiAlbumService.getAlbumTracks(collectionId);
+    this.albumDetail$ = this.musicApiService.getAlbumTracks(collectionId);
   }
 
   playAudio(audio: HTMLAudioElement): void {

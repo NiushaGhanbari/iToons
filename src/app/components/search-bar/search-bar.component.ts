@@ -5,7 +5,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { AsyncPipe } from '@angular/common';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { Observable, debounceTime, startWith, switchMap } from 'rxjs';
-import { ApiAlbumService } from '../../core/services/album.service';
+import { MusicApiService } from '../../core/services/music-api.service';
 import { SortAlbumsComponent } from '../sort-albums/sort-albums.component';
 import { Router } from '@angular/router';
 
@@ -30,7 +30,7 @@ export class SearchBarComponent {
   public filteredOptions!: Observable<any[]>;
 
   constructor(
-    private apiAlbumService: ApiAlbumService,
+    private musicApiService: MusicApiService,
     private router: Router
   ) {}
 
@@ -38,7 +38,7 @@ export class SearchBarComponent {
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
       debounceTime(300),
-      switchMap((val) => (val ? this.apiAlbumService.getArtists(val) : []))
+      switchMap((val) => (val ? this.musicApiService.getArtists(val) : []))
     );
   }
 
