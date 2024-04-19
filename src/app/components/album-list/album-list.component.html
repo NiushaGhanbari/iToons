@@ -12,7 +12,7 @@
     <div *ngIf="!(albums$ | async)">
       <h2>Popular Artists Albums</h2>
       <div class="d-flex flex-wrap">
-        <ng-container *ngFor="let album of popularAlbums | async">
+        <ng-container *ngFor="let album of popularAlbums$ | async">
           <app-album-card
             *ngIf="album.wrapperType === 'collection'"
             [album]="album"
