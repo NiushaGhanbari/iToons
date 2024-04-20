@@ -15,13 +15,12 @@ export class ResponseInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    return next.handle(request).pipe(
-      map((event) => {
-        if (event instanceof HttpResponse && event.body && event.body.results) {
-          return event.clone({ body: event.body.results });
-        }
-        return event;
-      })
-    );
+    return next.handle(request).pipe(map(this.transformResponse));
+  }
+
+  private transformResponse(event: HttpEvent<any>): HttpEvent<any> {
+    return event instanceof HttpResponse && event.body && event.body.results
+      ? event.clone({ body: event.body.results })
+      : event;
   }
 }

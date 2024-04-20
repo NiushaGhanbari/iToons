@@ -5,8 +5,9 @@ import {
   HttpHandler,
   HttpEvent,
   HttpResponse,
+  HttpErrorResponse,
 } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import { Observable, catchError, map, throwError } from 'rxjs';
 
 @Injectable()
 export class StatusInterceptor implements HttpInterceptor {
@@ -14,14 +15,13 @@ export class StatusInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    return next.handle(request).pipe(
-      map((event) => {
-        if (event instanceof HttpResponse && event.body && event.body.status) {
-          // TODO: Do something with the 'status' property
-          console.log('Status from response:', event.body.status);
-        }
-        return event;
-      })
-    );
+    return next
+      .handle(request)
+      .pipe(catchError((error) => this.handleError(error)));
+  }
+
+  private handleError(error: HttpErrorResponse): Observable<never> {
+    console.error('HTTP Error:', error);
+    return throwError(() => new Error('HTTP error occurred'));
   }
 }
