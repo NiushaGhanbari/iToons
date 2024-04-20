@@ -7,6 +7,7 @@ import { AsyncPipe, CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { ResizeImagePipe } from '../../helpers/resize-image.pipe';
+import { WrapperType } from '../../core/constants/wrapper-type';
 
 @Component({
   selector: 'app-album-detail',
@@ -23,6 +24,7 @@ import { ResizeImagePipe } from '../../helpers/resize-image.pipe';
 })
 export class AlbumDetailComponent {
   public albumDetail$!: Observable<MusicTrack[]>;
+  public wrapperType = WrapperType;
   constructor(
     private musicApiService: MusicApiService,
     private route: ActivatedRoute

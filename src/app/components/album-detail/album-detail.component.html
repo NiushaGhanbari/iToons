@@ -1,6 +1,8 @@
 <div class="container album-detail p-t-2">
   @for (album of albumDetail$ | async; track album) {
-  <ng-container *ngIf="album.wrapperType === 'track'; else collection">
+  <ng-container
+    *ngIf="album.wrapperType === wrapperType.Track; else collection"
+  >
     <div class="track">
       <div class="d-flex jus-between">
         <div class="d-flex al-center">

@@ -16,12 +16,11 @@ describe('AlbumListComponent', () => {
       'getArtistAlbums',
     ]);
     mockRoute = {
-      queryParams: of({ sortType: 'name' }), // Simulating route query params
+      queryParams: of({ sortType: 'name' }),
     };
 
     await TestBed.configureTestingModule({
-      declarations: [],
-      imports: [NoopAnimationsModule, AlbumListComponent], // Add this line
+      imports: [NoopAnimationsModule, AlbumListComponent],
       providers: [
         { provide: MusicApiService, useValue: mockMusicApiService },
         { provide: ActivatedRoute, useValue: mockRoute },

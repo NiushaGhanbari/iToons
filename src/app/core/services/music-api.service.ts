@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment'; // Adjust path as necessary
+import { environment } from '../../../environments/environment';
 import { Album } from '../models/album.types';
 import { Artist } from '../models/artist.types';
 import { MusicTrack } from '../models/music-track.types';

@@ -21,7 +21,6 @@ describe('AlbumDetailComponent', () => {
     };
 
     await TestBed.configureTestingModule({
-      declarations: [],
       imports: [HttpClientTestingModule, AlbumDetailComponent],
       providers: [
         { provide: MusicApiService, useValue: mockMusicApiService },

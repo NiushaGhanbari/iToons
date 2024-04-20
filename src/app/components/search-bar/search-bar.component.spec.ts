@@ -20,7 +20,6 @@ describe('SearchBarComponent', () => {
     ]);
 
     await TestBed.configureTestingModule({
-      declarations: [],
       imports: [
         ReactiveFormsModule,
         MatInputModule,

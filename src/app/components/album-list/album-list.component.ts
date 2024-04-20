@@ -7,6 +7,7 @@ import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { AlbumCardComponent } from '../album-card/album-card.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ActivatedRoute } from '@angular/router';
+import { WrapperType } from '../../core/constants/wrapper-type';
 
 @Component({
   selector: 'app-album-list',
@@ -24,6 +25,7 @@ import { ActivatedRoute } from '@angular/router';
 export class AlbumListComponent {
   @ViewChild('scrollContainer') scrollContainer!: ElementRef;
   public albums$!: Observable<Album[]>;
+  public wrapperType = WrapperType;
   public isLoading: boolean = false;
   public displayNumber: number = 15;
   public popularAlbums$!: Observable<Album[]>;
@@ -78,7 +80,7 @@ export class AlbumListComponent {
   }
 
   @HostListener('window:scroll', ['$event'])
-  onScroll(event: any) {
+  onScroll() {
     const element = this.scrollContainer.nativeElement;
     const scrollPosition = window.scrollY + window.innerHeight;
     if (scrollPosition > element.scrollHeight - 2) {
