@@ -4,7 +4,6 @@ export interface Artist {
   artistName: string;
   artistLinkUrl: string;
   artistId: number;
-  amgArtistId?: number;
   primaryGenreName: string;
   primaryGenreId: number;
 }
