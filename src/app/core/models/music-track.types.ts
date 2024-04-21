@@ -1,4 +1,5 @@
 export interface MusicTrack {
+  wrapperType: string;
   artistName: string;
   artworkUrl100: string;
   collectionId: number;
@@ -8,5 +9,4 @@ export interface MusicTrack {
   previewUrl: string;
   trackName: string;
   trackPrice: number;
-  wrapperType: string;
 }

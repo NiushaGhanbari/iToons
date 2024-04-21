@@ -1,32 +1,27 @@
-<div class="container album-detail p-t-2">
-  @for (album of albumDetail$ | async; track album) {
-  <ng-container
-    *ngIf="album.wrapperType === wrapperType.Track; else collection"
-  >
-    <div class="track">
-      <div class="d-flex jus-between">
-        <div class="d-flex al-center">
-          <audio
-            #audioPlayer
-            [src]="album.previewUrl"
-            controlsList="nodownload"
-          ></audio>
-          <mat-icon color="warn" (click)="playAudio(audioPlayer)">{{
-            audioPlayer.paused ? "play_arrow" : "pause"
-          }}</mat-icon>
-          <span>{{ album.trackName }}</span>
-        </div>
-
-        <span>{{ album.collectionPrice | currency : album.currency }}</span>
+<div class="container albumDetail-detail p-t-2">
+  @if (album) {
+  <div class="d-flex flex-col al-center m-b-2">
+    <img [src]="album.artworkUrl100 | resizeImage" alt="AlbumPhoto" />
+    <h1 class="m-t-1">{{ album.collectionName }}</h1>
+    <p>{{ album.artistName }}</p>
+  </div>
+  } @for (track of tracks; track track) {
+  <div class="track">
+    <div class="d-flex jus-between">
+      <div class="d-flex al-center">
+        <audio
+          #audioPlayer
+          [src]="track.previewUrl"
+          controlsList="nodownload"
+        ></audio>
+        <mat-icon color="warn" (click)="playAudio(audioPlayer)">{{
+          audioPlayer.paused ? "play_arrow" : "pause"
+        }}</mat-icon>
+        <span>{{ track.trackName }}</span>
       </div>
+
+      <span>{{ track.collectionPrice | currency : track.currency }}</span>
     </div>
-  </ng-container>
-  <ng-template #collection>
-    <div class="d-flex flex-col al-center m-b-2">
-      <img [src]="album.artworkUrl100 | resizeImage" alt="AlbumPhoto" />
-      <h1 class="m-t-1">{{ album.collectionName }}</h1>
-      <p>{{ album.artistName }}</p>
-    </div>
-  </ng-template>
+  </div>
   }
 </div>

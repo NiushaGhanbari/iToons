@@ -6,6 +6,10 @@ import { Album } from '../models/album.types';
 import { Artist } from '../models/artist.types';
 import { MusicTrack } from '../models/music-track.types';
 import { ApiEntity } from '../constants/api-constants';
+import {
+  AlbumOrTrackResponse,
+  ArtistOrAlbumResponse,
+} from '../models/common.types';
 
 /**
  * Service to handle API operations related to music data retrieval from iTunes.
@@ -43,9 +47,9 @@ export class MusicApiService {
   /**
    * Fetches tracks for a given album using its collection ID from the iTunes API.
    * @param collectionId The unique identifier for the album collection.
-   * @returns An Observable of MusicTrack array.
+   * @returns An Observable of AlbumOrTrackResponse array.
    */
-  getAlbumTracks(collectionId: string): Observable<MusicTrack[]> {
+  getAlbumTracks(collectionId: string): Observable<AlbumOrTrackResponse[]> {
     return this.httpClient.get<MusicTrack[]>(`${this.API_URL}/lookup`, {
       params: { entity: ApiEntity.Song, id: collectionId },
     });
@@ -55,14 +59,17 @@ export class MusicApiService {
    * Fetches albums for a predefined set of "my popular" artists. I have used these IDs
    * (3177510, 347307, 2487752) to show them on the main page as an example. This method
    * retrieves 10 albums for these artists.
-   * @returns An Observable of Album array.
+   * @returns An Observable of ArtistOrAlbumResponse array.
    */
-  getArtistAlbums(): Observable<Album[]> {
+  getArtistAlbums(): Observable<ArtistOrAlbumResponse[]> {
     const params = {
       amgArtistId: '3177510,347307,2487752',
       entity: ApiEntity.Album,
       limit: '10',
     };
-    return this.httpClient.get<Album[]>(`${this.API_URL}/lookup`, { params });
+    return this.httpClient.get<ArtistOrAlbumResponse[]>(
+      `${this.API_URL}/lookup`,
+      { params }
+    );
   }
 }

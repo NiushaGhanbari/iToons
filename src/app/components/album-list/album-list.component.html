@@ -2,30 +2,23 @@
   <app-search-bar (onSearch)="loadAlbums($event)"></app-search-bar>
   <div class="container">
     <div class="d-flex flex-wrap">
-      <ng-container
-        *ngFor="let album of albums$ | async | slice : 0 : displayNumber"
-      >
-        <app-album-card [album]="album"></app-album-card>
-      </ng-container>
+      @for (album of albums$ | async | slice : 0 : displayNumber ; track album)
+      {
+      <app-album-card [album]="album"></app-album-card>
+      }
     </div>
-
-    <div *ngIf="!(albums$ | async) && !isLoading">
+    @if (!(albums$ | async) && !isLoading) {
+    <div>
       <h2>Popular Artists Albums</h2>
       <div class="d-flex flex-wrap">
-        <ng-container *ngFor="let album of popularAlbums$ | async">
-          <app-album-card
-            *ngIf="album.wrapperType === wrapperType.Collection"
-            [album]="album"
-          ></app-album-card>
-        </ng-container>
+        @for (album of popularAlbums$ | async; track album) {
+        <app-album-card [album]="album"></app-album-card>
+        }
       </div>
     </div>
+    }
   </div>
-
-  <mat-spinner
-    *ngIf="isLoading"
-    diameter="50"
-    class="m-auto"
-    mode="indeterminate"
-  ></mat-spinner>
+  @if(isLoading) {
+  <mat-spinner diameter="50" class="m-auto" mode="indeterminate"></mat-spinner>
+  }
 </div>
