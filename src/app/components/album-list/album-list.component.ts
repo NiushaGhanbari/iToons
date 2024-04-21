@@ -38,7 +38,6 @@ export class AlbumListComponent {
   public isLoading: boolean = false;
   public displayNumber: number = 15;
   public popularAlbums$!: Observable<Album[]>;
-  public popularAlbums!: Album[];
   constructor(
     private musicApiService: MusicApiService,
     private route: ActivatedRoute

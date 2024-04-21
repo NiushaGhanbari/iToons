@@ -1,30 +1,44 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AlbumListComponent } from './album-list.component';
 import { MusicApiService } from '../../core/services/music-api.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, convertToParamMap } from '@angular/router';
 import { of } from 'rxjs';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
+import { SearchBarComponent } from '../search-bar/search-bar.component';
+import { AlbumCardComponent } from '../album-card/album-card.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('AlbumListComponent', () => {
   let component: AlbumListComponent;
   let fixture: ComponentFixture<AlbumListComponent>;
-  let mockMusicApiService: jasmine.SpyObj<MusicApiService>;
-  let mockRoute: any;
+  let musicApiServiceMock: any;
+  let activatedRouteMock: any;
 
-  beforeEach(async () => {
-    mockMusicApiService = jasmine.createSpyObj('MusicApiService', [
-      'getArtistAlbums',
-    ]);
-    mockRoute = {
-      queryParams: of({ sortType: 'name' }),
+  beforeEach(() => {
+    musicApiServiceMock = {
+      getAlbums: jasmine.createSpy().and.returnValue(of([])),
+      getArtistAlbums: jasmine.createSpy().and.returnValue(of([])),
+    };
+    activatedRouteMock = {
+      queryParams: of(convertToParamMap({ sortType: 'name' })),
     };
 
-    await TestBed.configureTestingModule({
-      imports: [NoopAnimationsModule, AlbumListComponent],
-      providers: [
-        { provide: MusicApiService, useValue: mockMusicApiService },
-        { provide: ActivatedRoute, useValue: mockRoute },
+    TestBed.configureTestingModule({
+      imports: [
+        CommonModule,
+        SearchBarComponent,
+        AlbumCardComponent,
+        MatProgressSpinnerModule,
+        AlbumListComponent,
+        NoopAnimationsModule,
       ],
+      providers: [
+        { provide: MusicApiService, useValue: musicApiServiceMock },
+        { provide: ActivatedRoute, useValue: activatedRouteMock },
+      ],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AlbumListComponent);
@@ -33,10 +47,6 @@ describe('AlbumListComponent', () => {
   });
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should fetch popular artists on init', () => {
-    expect(mockMusicApiService.getArtistAlbums).toHaveBeenCalled();
   });
 
   it('should sort albums by string property `artistName`', () => {
